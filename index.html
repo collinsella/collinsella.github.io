@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ella Collins</title>
+<meta name="description" content="Ella Collins — Computer Science at Georgia Tech. Portfolio and CS 2340 project report.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#EEF1F5;
+  --surface:#FFFFFF;
+  --surface-2:#E4E9F0;
+  --ink:#0B1A2E;
+  --ink-soft:#4A5A70;
+  --ink-faint:#7A8AA0;
+  --accent:#7E6318;
+  --accent-bright:#C9A227;
+  --line:#D5DCE5;
+  --marquee:#0A1626;
+  --marquee-ink:#EEF2F8;
+  --marquee-soft:#94A6BD;
+  --pending:#B9812A;
+  --pending-bg:rgba(201,162,39,.10);
+  --radius:3px;
+  --measure:66ch;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0A1626;
+    --surface:#11223C;
+    --surface-2:#16294A;
+    --ink:#E8EDF4;
+    --ink-soft:#9DAFC6;
+    --ink-faint:#6F84A0;
+    --accent:#E5B94E;
+    --accent-bright:#E5B94E;
+    --line:#1D3252;
+    --marquee:#060F1C;
+    --marquee-ink:#EEF2F8;
+    --marquee-soft:#8FA2BA;
+    --pending:#E5B94E;
+    --pending-bg:rgba(229,185,78,.09);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0A1626;
+  --surface:#11223C;
+  --surface-2:#16294A;
+  --ink:#E8EDF4;
+  --ink-soft:#9DAFC6;
+  --ink-faint:#6F84A0;
+  --accent:#E5B94E;
+  --accent-bright:#E5B94E;
+  --line:#1D3252;
+  --marquee:#060F1C;
+  --marquee-ink:#EEF2F8;
+  --marquee-soft:#8FA2BA;
+  --pending:#E5B94E;
+  --pending-bg:rgba(229,185,78,.09);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent-bright);outline-offset:3px}
+
+/* ---------- shared shell ---------- */
+.wrap{width:100%;max-width:960px;margin:0 auto;padding:0 28px}
+.col{max-width:var(--measure)}
+
+.eyebrow{
+  font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0;
+}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb,var(--ground) 88%,transparent);
+  backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;gap:22px;height:56px}
+.nav-name{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:600;font-size:17px;letter-spacing:-.01em;
+  text-decoration:none;margin-right:auto;
+}
+.nav a.nav-link{
+  font-size:14px;color:var(--ink-soft);text-decoration:none;
+  padding:4px 0;border-bottom:1px solid transparent;
+}
+.nav a.nav-link:hover{color:var(--ink);border-bottom-color:var(--accent-bright)}
+.theme-btn{
+  font:inherit;font-size:13px;cursor:pointer;
+  background:none;border:1px solid var(--line);color:var(--ink-soft);
+  border-radius:100px;padding:3px 11px;line-height:1.5;
+}
+.theme-btn:hover{color:var(--ink);border-color:var(--ink-faint)}
+@media(max-width:640px){
+  .nav a.nav-link[data-optional]{display:none}
+  .nav-in{gap:16px}
+}
+
+/* ---------- marquee hero ---------- */
+.hero{
+  background:var(--marquee);
+  color:var(--marquee-ink);
+  border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(120% 85% at 50% -25%, rgba(229,185,78,.20), transparent 62%),
+    radial-gradient(70% 60% at 12% 108%, rgba(0,86,160,.30), transparent 70%);
+  pointer-events:none;
+}
+.hero-in{position:relative;padding:76px 0 64px}
+.hero h1{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:600;
+  font-size:clamp(2.6rem,7vw,4.1rem);
+  line-height:1.02;
+  letter-spacing:-.025em;
+  text-wrap:balance;
+  margin:14px 0 0;
+}
+.hero .tag{
+  margin:20px 0 0;max-width:54ch;
+  font-size:clamp(1rem,2.4vw,1.16rem);
+  color:var(--marquee-soft);
+}
+.hero .rule{
+  width:64px;height:2px;background:var(--accent-bright);
+  margin:26px 0 0;border-radius:2px;
+}
+.hero .eyebrow{color:var(--accent-bright)}
+.facts{
+  display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 0;padding:0;list-style:none;
+}
+.facts li{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:12px;letter-spacing:.03em;
+  color:var(--marquee-soft);
+  border:1px solid rgba(148,166,189,.34);
+  border-radius:100px;padding:4px 12px;
+}
+
+/* ---------- sections ---------- */
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+h2{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:600;font-size:clamp(1.7rem,4vw,2.2rem);
+  letter-spacing:-.02em;line-height:1.15;text-wrap:balance;
+  margin:10px 0 20px;
+}
+h3{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:600;font-size:1.28rem;letter-spacing:-.01em;
+  margin:0 0 10px;text-wrap:balance;
+}
+p{margin:0 0 18px}
+.lead{font-size:1.1rem;color:var(--ink-soft)}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1fr;gap:36px}
+@media(min-width:840px){.about-grid{grid-template-columns:minmax(0,1fr) 250px;gap:52px}}
+.threads{display:flex;flex-direction:column;gap:14px}
+.thread{
+  border-left:2px solid var(--accent-bright);
+  padding:2px 0 2px 14px;
+}
+.thread b{display:block;font-size:15px;letter-spacing:-.005em}
+.thread span{font-size:14px;color:var(--ink-soft);line-height:1.5;display:block}
+.aside-card{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:20px 22px;align-self:start;
+}
+.aside-card .eyebrow{margin-bottom:12px}
+.dl{margin:0;font-size:14.5px}
+.dl div{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-bottom:1px solid var(--line)}
+.dl div:last-child{border-bottom:0}
+.dl dt{color:var(--ink-faint)}
+.dl dd{margin:0;text-align:right;font-weight:500}
+
+/* ---------- projects ---------- */
+.projects{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:760px){.projects{grid-template-columns:repeat(2,1fr)}}
+.card{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:22px 24px;
+  display:flex;flex-direction:column;gap:10px;
+  text-decoration:none;color:inherit;
+}
+a.card:hover{border-color:var(--accent-bright)}
+.card--feature{grid-column:1/-1;border-left:3px solid var(--accent-bright)}
+.card h3{margin:0}
+.card p{margin:0;font-size:15px;color:var(--ink-soft);line-height:1.55}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.stack span{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.02em;color:var(--ink-soft);
+  background:var(--surface-2);border-radius:2px;padding:3px 8px;
+}
+.card-more{
+  font-size:13.5px;font-weight:600;color:var(--accent);
+  letter-spacing:.01em;
+}
+.card--empty{
+  border-style:dashed;background:none;
+  color:var(--ink-faint);justify-content:center;min-height:120px;
+}
+.card--empty h3{color:var(--ink-faint);font-size:1.05rem}
+
+/* ---------- project detail ---------- */
+.sub{
+  margin-top:44px;padding-top:34px;border-top:1px solid var(--line);
+}
+.sub:first-of-type{margin-top:28px;padding-top:0;border-top:0}
+.sub > .eyebrow{margin-bottom:8px}
+
+/* requirements table */
+.table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px}
+thead th{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:500;text-align:left;
+  padding:12px 16px;border-bottom:1px solid var(--line);white-space:nowrap;
+}
+tbody td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+tbody tr:last-child td{border-bottom:0}
+td.id{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:12.5px;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums;
+}
+td.screen{color:var(--ink-soft);white-space:nowrap}
+
+/* pending / fill-in markers */
+.pending{
+  display:inline-block;
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:12px;letter-spacing:.02em;
+  color:var(--pending);background:var(--pending-bg);
+  border:1px dashed var(--pending);border-radius:2px;
+  padding:1px 7px;
+}
+.note{
+  background:var(--pending-bg);border:1px dashed var(--pending);
+  border-radius:var(--radius);padding:14px 18px;
+  font-size:14.5px;color:var(--ink-soft);margin:0 0 22px;
+}
+.note b{color:var(--pending)}
+
+/* process */
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:20px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:34px 1fr;gap:16px;align-items:start}
+.steps li::before{
+  counter-increment:s;content:counter(s,decimal-leading-zero);
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:12px;color:var(--accent);padding-top:3px;
+  font-variant-numeric:tabular-nums;
+}
+.steps h3{font-size:1.08rem;margin:0 0 4px}
+.steps p{margin:0;font-size:15px;color:var(--ink-soft)}
+
+/* video */
+.video{
+  background:var(--marquee);color:var(--marquee-ink);
+  border:1px solid var(--line);border-radius:var(--radius);
+  aspect-ratio:16/9;width:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  text-align:center;padding:24px;position:relative;overflow:hidden;
+}
+.video::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(60% 70% at 50% 30%,rgba(229,185,78,.16),transparent 70%);
+}
+.video > *{position:relative}
+.play{
+  width:58px;height:58px;border-radius:50%;
+  border:1px solid var(--accent-bright);
+  display:grid;place-items:center;
+}
+.play svg{width:19px;height:19px;fill:var(--accent-bright);margin-left:3px}
+.video p{margin:0;font-size:14.5px;color:var(--marquee-soft);max-width:38ch}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* footer */
+.foot{padding:40px 0 56px;font-size:14px;color:var(--ink-faint)}
+.foot a{color:var(--ink-soft)}
+.links{display:flex;flex-wrap:wrap;gap:18px;margin:0 0 14px;padding:0;list-style:none}
+.links a{font-size:15px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent-bright);padding-bottom:1px}
+.links a:hover{color:var(--accent)}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="nav-name" href="#top">Ella Collins</a>
+    <a class="nav-link" href="#about">About</a>
+    <a class="nav-link" href="#projects">Projects</a>
+    <a class="nav-link" data-optional href="#movies">GT Movies Store</a>
+    <button class="theme-btn" id="theme" type="button" aria-label="Switch color theme">Theme</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-in">
+    <p class="eyebrow">Georgia Institute of Technology</p>
+    <h1>Ella Collins</h1>
+    <div class="rule"></div>
+    <p class="tag">Computer Science student building at the intersection of machine intelligence and security &mdash; and, this semester, a Django storefront for movies.</p>
+    <ul class="facts">
+      <li>B.S. Computer Science</li>
+      <li>Threads: Intelligence &amp; Cybersecurity</li>
+      <li>CS 2340 &middot; Fall 2026</li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow">01 &mdash; About</p>
+    <h2>About me</h2>
+    <div class="about-grid">
+      <div>
+        <p class="lead">I&rsquo;m a Computer Science student at Georgia Tech, concentrating in Intelligence and Cybersecurity.</p>
+        <p>Those two threads chase the questions I find hardest to put down: how a system learns something nobody explicitly taught it, and how that same system holds up when a person is actively trying to break it. The overlap between them &mdash; models that have to be trustworthy, not just accurate &mdash; is where I want to spend my time.</p>
+        <p>Right now I&rsquo;m working through object-oriented design in CS 2340, which means a lot of time thinking about how to structure software so that the next person to open the file isn&rsquo;t cursing my name. The project below is the result.</p>
+        <p>Away from a terminal I&rsquo;m usually chasing down dance music, petting a dog that did not ask to be petted, or eating an unreasonable amount of sushi.</p>
+      </div>
+      <aside class="aside-card">
+        <p class="eyebrow">Focus areas</p>
+        <div class="threads">
+          <div class="thread">
+            <b>Intelligence</b>
+            <span>Machine learning, and what models do when they meet the real world.</span>
+          </div>
+          <div class="thread">
+            <b>Cybersecurity</b>
+            <span>Systems that stay standing under adversarial pressure.</span>
+          </div>
+        </div>
+        <dl class="dl" style="margin-top:18px">
+          <div><dt>School</dt><dd>Georgia Tech</dd></div>
+          <div><dt>Major</dt><dd>Computer Science</dd></div>
+          <div><dt>Course</dt><dd>CS 2340</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <p class="eyebrow">02 &mdash; Work</p>
+    <h2>Projects</h2>
+    <p class="col" style="color:var(--ink-soft)">What I&rsquo;ve built, and what I learned building it.</p>
+    <div class="projects">
+
+      <a class="card card--feature" href="#movies">
+        <h3>GT Movies Store</h3>
+        <p>A full-stack Django web application for browsing, reviewing, and ordering movies &mdash; designed and developed for CS 2340. Covers user accounts, a movie catalog, reviews, a shopping cart, and order history.</p>
+        <div class="stack"><span>Python</span><span>Django</span><span>SQLite</span><span>HTML/CSS</span><span>Bootstrap</span></div>
+        <span class="card-more">Read the full write-up &rarr;</span>
+      </a>
+
+      <div class="card card--empty">
+        <h3>Project slot</h3>
+        <p>Space for your next one &mdash; a class project, a hackathon build, or something you made for fun.</p>
+      </div>
+
+      <div class="card card--empty">
+        <h3>Project slot</h3>
+        <p>Same again. Duplicate the card above and fill it in when you have one.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="movies">
+  <div class="wrap">
+    <p class="eyebrow">03 &mdash; Featured project</p>
+    <h2>GT Movies Store</h2>
+    <p class="lead col">A Django web application where users can browse a movie catalog, leave reviews, build a cart, and place orders.</p>
+
+    <p class="note"><b>Fill this in:</b> the sections below are structured and styled but waiting on your content. Send me your project details and I&rsquo;ll write them in.</p>
+
+    <div class="sub">
+      <p class="eyebrow">Description</p>
+      <h3>What it is</h3>
+      <p class="col"><span class="pending">pending</span> &nbsp;An overview of the app: what it does, who it&rsquo;s for, how the pieces fit together, and the design decisions behind the structure.</p>
+    </div>
+
+    <div class="sub">
+      <p class="eyebrow">Requirements</p>
+      <h3>Screens &amp; user stories</h3>
+      <p class="col" style="color:var(--ink-soft)">How each screen in the application responds to a required user story.</p>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>ID</th><th>User story</th><th>Screen</th><th>How it&rsquo;s implemented</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="id">US&#8209;01</td><td><span class="pending">pending</span></td><td class="screen">&mdash;</td><td><span class="pending">pending</span></td></tr>
+            <tr><td class="id">US&#8209;02</td><td><span class="pending">pending</span></td><td class="screen">&mdash;</td><td><span class="pending">pending</span></td></tr>
+            <tr><td class="id">US&#8209;03</td><td><span class="pending">pending</span></td><td class="screen">&mdash;</td><td><span class="pending">pending</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <p class="eyebrow">Process</p>
+      <h3>How I worked</h3>
+      <p class="col" style="color:var(--ink-soft)">The methodology, the tooling, and how I handled the parts I didn&rsquo;t know yet.</p>
+      <ol class="steps">
+        <li><div><h3>Planning</h3><p><span class="pending">pending</span> &mdash; how the work was scoped and split.</p></div></li>
+        <li><div><h3>Building</h3><p><span class="pending">pending</span> &mdash; the development loop, branching, and review.</p></div></li>
+        <li><div><h3>Getting unstuck</h3><p><span class="pending">pending</span> &mdash; where the questions went and how they got answered.</p></div></li>
+      </ol>
+    </div>
+
+    <div class="sub">
+      <p class="eyebrow">Video demonstration</p>
+      <h3>See it running</h3>
+      <p class="col" style="color:var(--ink-soft)">A walkthrough of the application and its features.</p>
+      <div class="video">
+        <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l15-8.5z"/></svg></span>
+        <p>Demo video goes here &mdash; upload to YouTube as <b>Unlisted</b> and the embed drops straight in.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <ul class="links">
+      <li><a href="mailto:collins.ella@gmail.com">Email</a></li>
+      <li><a href="#" rel="noopener">GitHub</a></li>
+      <li><a href="#" rel="noopener">LinkedIn</a></li>
+    </ul>
+    <p>Ella Collins &middot; Georgia Institute of Technology &middot; CS 2340, Fall 2026</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('theme');
+  var root=document.documentElement;
+  try{var saved=localStorage.getItem('theme');if(saved){root.setAttribute('data-theme',saved);}}catch(e){}
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme');
+    var isDark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    var next=isDark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+})();
+</script>
+
+</body>
+</html>
