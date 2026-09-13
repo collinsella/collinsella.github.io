@@ -218,7 +218,7 @@ p{margin:0 0 18px}
 .note b{color:var(--pending)}
 
 .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
-table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px}
+table{border-collapse:collapse;width:100%;min-width:780px;font-size:14.5px}
 thead th{
   font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.12em;
   text-transform:uppercase;color:var(--ink-faint);font-weight:500;text-align:left;
@@ -226,18 +226,18 @@ thead th{
 }
 tbody td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
 tbody tr:last-child td{border-bottom:0}
-td.id{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums}
+td.area{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+td code{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.86em;background:var(--surface-2);padding:1px 5px;border-radius:2px;white-space:nowrap}
+tr.group-start td{border-top:1px solid var(--line)}
+.mine{display:inline-block;margin-left:6px;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-bright);border-radius:2px;padding:0 5px;vertical-align:1px;white-space:nowrap}
 td.screen{color:var(--ink-soft);white-space:nowrap}
 
-.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:20px;counter-reset:s}
-.steps li{display:grid;grid-template-columns:34px 1fr;gap:16px;align-items:start}
-.steps li::before{
-  counter-increment:s;content:counter(s,decimal-leading-zero);
-  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;color:var(--accent);
-  padding-top:3px;font-variant-numeric:tabular-nums;
-}
-.steps b{display:block;font-size:15.5px;margin-bottom:2px}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px;max-width:var(--measure)}
+.steps li{display:grid;grid-template-columns:14px 1fr;gap:14px;align-items:start}
+.steps li::before{content:"";width:6px;height:6px;background:var(--accent-bright);margin-top:9px}
+.steps b{display:block;font-size:15.5px;margin-bottom:3px}
 .steps p{margin:0;font-size:15px;color:var(--ink-soft)}
+.steps code{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.86em;background:var(--surface-2);padding:1px 5px;border-radius:2px}
 
 .video{
   background:var(--marquee);color:var(--marquee-ink);
@@ -255,6 +255,25 @@ td.screen{color:var(--ink-soft);white-space:nowrap}
 
 .foot{border-top:1px solid var(--line);padding:28px 0 44px;font-size:13.5px;color:var(--ink-faint)}
 .foot p{margin:0}
+
+.panel-side{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+@media(min-width:760px){.panel-side{align-items:flex-end}}
+.live{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:600;text-decoration:none;
+  color:var(--ink);border:1px solid var(--accent-bright);border-radius:100px;padding:6px 14px;
+}
+.live:hover{background:var(--pending-bg)}
+.live svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
+.apps{display:grid;grid-template-columns:1fr;gap:12px;margin:22px 0 0}
+@media(min-width:700px){.apps{grid-template-columns:repeat(2,1fr)}}
+.app{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
+.app code{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13px;color:var(--accent);font-weight:500}
+.app p{margin:6px 0 0;font-size:14.5px;color:var(--ink-soft);line-height:1.55}
+.decisions{margin:26px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;max-width:var(--measure)}
+.decisions li{font-size:15px;color:var(--ink-soft);padding-left:16px;border-left:2px solid var(--line)}
+.decisions b{color:var(--ink);font-weight:600}
+.credit{margin:22px 0 0;font-size:13.5px;color:var(--ink-faint);max-width:var(--measure)}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -329,30 +348,55 @@ td.screen{color:var(--ink-soft);white-space:nowrap}
           <p class="eyebrow">CS 2340 &middot; Fall 2026</p>
           <h3>GT Movies Store</h3>
         </div>
-        <div class="stack"><span>Python</span><span>Django</span><span>SQLite</span><span>HTML/CSS</span></div>
+        <div class="panel-side">
+          <a class="live" href="https://ellacollins.pythonanywhere.com" target="_blank" rel="noopener">Visit the live site
+            <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 2 10"/></svg></a>
+          <div class="stack"><span>Django 5.0</span><span>Python 3.13</span><span>SQLite</span><span>Bootstrap 5.3</span><span>PythonAnywhere</span></div>
+        </div>
       </div>
-      <p class="lead col">A Django web application where users can browse a movie catalog, leave reviews, build a cart, and place orders.</p>
-      <p class="note"><b>In progress:</b> the sections below are structured and waiting on project details.</p>
+      <p class="lead col">An online movie store. Users browse and search a catalog, read and write reviews, fill a cart, check out, and look back at their order history. Admins manage the catalog and moderate reviews through Django&rsquo;s admin.</p>
 
       <div class="sub">
         <p class="eyebrow">Description</p>
-        <h4>What it is</h4>
-        <p class="col"><span class="pending">pending</span> &nbsp;An overview of the app: what it does, who it&rsquo;s for, how the pieces fit together, and the design decisions behind the structure.</p>
+        <h4>How it&rsquo;s built</h4>
+        <p class="col soft">The project is split into four Django apps, each owning one part of the store.</p>
+        <div class="apps">
+          <div class="app"><code>home</code><p>The landing page and About page.</p></div>
+          <div class="app"><code>movies</code><p>The catalog, search, movie detail pages, and reviews &mdash; including reporting and moderation.</p></div>
+          <div class="app"><code>cart</code><p>The session-based cart, checkout, and the <code>Order</code> and <code>Item</code> models.</p></div>
+          <div class="app"><code>accounts</code><p>Sign up, log in and out, and each user&rsquo;s order history.</p></div>
+        </div>
+        <ul class="decisions">
+          <li><b>The cart lives in the session.</b> It&rsquo;s a <code>{movie_id: quantity}</code> dictionary, so browsing and adding to a cart never touches the database.</li>
+          <li><b>Orders record the price at purchase time.</b> Each <code>Item</code> stores its own price and quantity, so changing a movie&rsquo;s price later doesn&rsquo;t rewrite anyone&rsquo;s order history.</li>
+          <li><b>Permissions are enforced on the server.</b> Edit and Delete only appear on your own reviews, and the views check ownership again, so a hand-typed URL can&rsquo;t edit someone else&rsquo;s review.</li>
+        </ul>
+        <p class="credit">Built on the course&rsquo;s Django tutorial foundation by Daniel Correa and Greg Lim, then extended.</p>
       </div>
 
       <div class="sub">
         <p class="eyebrow">Requirements</p>
         <h4>Screens &amp; user stories</h4>
-        <p class="col soft">How each screen in the application responds to a required user story.</p>
+        <p class="col soft">How each screen responds to what a user needs to do.</p>
         <div class="table-scroll">
           <table>
             <thead>
-              <tr><th>ID</th><th>User story</th><th>Screen</th><th>How it&rsquo;s implemented</th></tr>
+              <tr><th>Area</th><th>User story</th><th>Screen</th><th>How it&rsquo;s implemented</th></tr>
             </thead>
             <tbody>
-              <tr><td class="id">US&#8209;01</td><td><span class="pending">pending</span></td><td class="screen">&mdash;</td><td><span class="pending">pending</span></td></tr>
-              <tr><td class="id">US&#8209;02</td><td><span class="pending">pending</span></td><td class="screen">&mdash;</td><td><span class="pending">pending</span></td></tr>
-              <tr><td class="id">US&#8209;03</td><td><span class="pending">pending</span></td><td class="screen">&mdash;</td><td><span class="pending">pending</span></td></tr>
+              <tr><td class="area">Accounts</td><td>As a visitor, I can create an account.</td><td class="screen">Sign up</td><td>A customized <code>UserCreationForm</code> with Bootstrap styling; validation errors show as Bootstrap alerts through a custom <code>ErrorList</code>.</td></tr>
+              <tr><td class="area">Accounts</td><td>As a user, I can log in and log out.</td><td class="screen">Log in, navbar</td><td>Django authentication. The navbar swaps Log in and Sign up for Orders and Log out once you&rsquo;re signed in.</td></tr>
+              <tr class="group-start"><td class="area">Movies</td><td>As a user, I can browse every movie.</td><td class="screen">Movies</td><td>A list of each movie&rsquo;s name, price, description, and poster image.</td></tr>
+              <tr><td class="area">Movies</td><td>As a user, I can search movies by name.</td><td class="screen">Movies</td><td>A case-insensitive name filter passed as the <code>?search=</code> query parameter.</td></tr>
+              <tr><td class="area">Movies</td><td>As a user, I can see a movie&rsquo;s details and reviews.</td><td class="screen">Movie detail</td><td>The detail page lists the movie&rsquo;s reviews, leaving out any that have been reported.</td></tr>
+              <tr class="group-start"><td class="area">Reviews</td><td>As a signed-in user, I can write a review.</td><td class="screen">Movie detail</td><td>A login-required view saves the review against the movie and the current user.</td></tr>
+              <tr><td class="area">Reviews</td><td>As a signed-in user, I can edit or delete my own reviews.</td><td class="screen">Movie detail, Edit review</td><td>The buttons appear only on your own reviews, and the views re-check ownership before saving or deleting.</td></tr>
+              <tr><td class="area">Reviews</td><td>As a signed-in user, I can report someone else&rsquo;s review.<span class="mine">My addition</span></td><td class="screen">Movie detail</td><td>Report appears only on other people&rsquo;s reviews. Reporting sets <code>is_hidden</code>, which removes the review from the movie page.</td></tr>
+              <tr class="group-start"><td class="area">Cart</td><td>As a user, I can add a movie to my cart.</td><td class="screen">Movie detail</td><td>Choose a quantity from 1 to 10; the cart is saved in the session rather than the database.</td></tr>
+              <tr><td class="area">Cart</td><td>As a user, I can review my cart and clear it.</td><td class="screen">Cart</td><td>Line items and a running total, calculated by a helper in <code>utils.py</code> and a custom <code>get_quantity</code> template filter.</td></tr>
+              <tr><td class="area">Cart</td><td>As a signed-in user, I can buy what&rsquo;s in my cart.</td><td class="screen">Cart, Purchase</td><td>Creates an <code>Order</code> plus one <code>Item</code> per movie, clears the cart, and shows a confirmation with the order number.</td></tr>
+              <tr class="group-start"><td class="area">Orders</td><td>As a signed-in user, I can see my past orders.</td><td class="screen">Orders</td><td>Lists every order placed by the current user.</td></tr>
+              <tr class="group-start"><td class="area">Admin</td><td>As an admin, I can manage movies and moderate reviews.</td><td class="screen">Django admin</td><td>Movies are sorted by name and searchable; a <code>ReviewAdmin</code> shows the <code>is_hidden</code> flag so reported reviews can be managed.</td></tr>
             </tbody>
           </table>
         </div>
@@ -361,12 +405,14 @@ td.screen{color:var(--ink-soft);white-space:nowrap}
       <div class="sub">
         <p class="eyebrow">Process</p>
         <h4>How I worked</h4>
-        <p class="col soft">The methodology, the tooling, and how I handled the parts I didn&rsquo;t know yet.</p>
-        <ol class="steps">
-          <li><div><b>Planning</b><p><span class="pending">pending</span> &mdash; how the work was scoped and split.</p></div></li>
-          <li><div><b>Building</b><p><span class="pending">pending</span> &mdash; the development loop, branching, and review.</p></div></li>
-          <li><div><b>Getting unstuck</b><p><span class="pending">pending</span> &mdash; where the questions went and how they got answered.</p></div></li>
-        </ol>
+        <p class="col soft">What I built on, what I added, and what broke along the way.</p>
+        <ul class="steps">
+          <li><div><b>Starting from a foundation</b><p>The project began from the course&rsquo;s Django tutorial, organized into four apps so that each part of the store &mdash; catalog, cart, accounts, home &mdash; could change without disturbing the others.</p></div></li>
+          <li><div><b>Adding review moderation</b><p>I added a way for users to report reviews. A reported review is hidden from the movie page rather than deleted, so an admin can still see it and decide what to do. That took a new <code>is_hidden</code> field, a report view, a template rule that shows Report only on other people&rsquo;s reviews, and an admin column for managing hidden reviews.</p></div></li>
+          <li><div><b>Moving to production</b><p>The store was first built on MySQL. To deploy it, I migrated to SQLite by exporting everything with <code>dumpdata</code> and loading it back with <code>loaddata</code>, so no data was lost. It now runs on PythonAnywhere in a virtualenv, serving movie images from <code>media/</code>.</p></div></li>
+          <li><div><b>Tracking down a checkout bug</b><p>The Purchase button was showing up once per movie, outside the cart table. The link had been placed inside the table&rsquo;s loop, which isn&rsquo;t valid table markup, so browsers pushed it out and repeated it. Moving it below the cart total fixed it.</p></div></li>
+          <li><div><b>Methodology &amp; getting unstuck</b><p><span class="pending">pending</span> &mdash; the approach I followed and how I worked through questions.</p></div></li>
+        </ul>
       </div>
 
       <div class="sub">
