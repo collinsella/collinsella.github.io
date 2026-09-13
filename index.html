@@ -206,16 +206,6 @@ p{margin:0 0 18px}
   letter-spacing:-.01em;margin:0 0 10px;
 }
 
-.pending{
-  display:inline-block;font-family:"JetBrains Mono",ui-monospace,monospace;
-  font-size:12px;letter-spacing:.02em;color:var(--pending);background:var(--pending-bg);
-  border:1px dashed var(--pending);border-radius:2px;padding:1px 7px;
-}
-.note{
-  background:var(--pending-bg);border:1px dashed var(--pending);border-radius:var(--radius);
-  padding:13px 18px;font-size:14.5px;color:var(--ink-soft);margin:20px 0 0;
-}
-.note b{color:var(--pending)}
 
 .how{margin:0;line-height:1.55}
 .how + .how{margin-top:10px;color:var(--ink-soft)}
@@ -424,7 +414,7 @@ a.video:hover .play{background:rgba(229,185,78,.16)}
           <li><div><b>Adding review moderation</b><p>I added a way for users to report reviews. A reported review is hidden from the movie page rather than deleted, so an admin can still see it and decide what to do. That took a new <code>is_hidden</code> field, a report view, a template rule that shows Report only on other people&rsquo;s reviews, and an admin column for managing hidden reviews.</p></div></li>
           <li><div><b>Fixing formatting issues</b><p>Once the features worked, I experimented with the templates&rsquo; HTML and CSS to fix formatting issues, adjusting the layout until each page displayed cleanly.</p></div></li>
           <li><div><b>Designing for different devices</b><p>People reach the store from phones, tablets, and laptops, so I adapted the HTML and CSS to give each of them a good experience &mdash; using Bootstrap&rsquo;s grid to rearrange content across screen sizes, and a navbar that collapses into a menu on smaller screens.</p></div></li>
-          <li><div><b>Getting unstuck</b><p><span class="pending">pending</span> &mdash; how I worked through questions and problems along the way.</p></div></li>
+          <li><div><b>Navigating issues and bugs</b><p>When I ran into an issue or a bug, I turned to the textbook and its provided resources first. From there it was trial and error: debugging, testing changes, and working through the problem until the app behaved the way it should.</p></div></li>
         </ul>
       </div>
 
