@@ -237,7 +237,6 @@ td.screen{color:var(--ink-soft);white-space:nowrap}
 .steps li::before{content:"";width:6px;height:6px;background:var(--accent-bright);margin-top:9px}
 .steps b{display:block;font-size:15.5px;margin-bottom:3px}
 .steps p{margin:0;font-size:15px;color:var(--ink-soft)}
-.steps a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent-bright)}
 .steps code{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.86em;background:var(--surface-2);padding:1px 5px;border-radius:2px}
 
 .video{
@@ -274,9 +273,6 @@ td.screen{color:var(--ink-soft);white-space:nowrap}
 .decisions{margin:26px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;max-width:var(--measure)}
 .decisions li{font-size:15px;color:var(--ink-soft);padding-left:16px;border-left:2px solid var(--line)}
 .decisions b{color:var(--ink);font-weight:600}
-.credit{margin:22px 0 0;font-size:13.5px;color:var(--ink-faint);max-width:var(--measure)}
-.credit a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--accent-bright)}
-.credit a:hover{color:var(--ink)}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -374,7 +370,6 @@ td.screen{color:var(--ink-soft);white-space:nowrap}
           <li><b>Orders record the price at purchase time.</b> Each <code>Item</code> stores its own price and quantity, so changing a movie&rsquo;s price later doesn&rsquo;t rewrite anyone&rsquo;s order history.</li>
           <li><b>Permissions are enforced on the server.</b> Edit and Delete only appear on your own reviews, and the views check ownership again, so a hand-typed URL can&rsquo;t edit someone else&rsquo;s review.</li>
         </ul>
-        <p class="credit">Built step by step from the course&rsquo;s assigned textbook, <a href="https://learning.oreilly.com/library/view/django-5-for/9781835461556/" target="_blank" rel="noopener"><cite>Django 5 for the Impatient</cite></a> (2nd edition, Packt, 2024) by Daniel Correa and Greg Lim, then extended.</p>
       </div>
 
       <div class="sub">
@@ -418,7 +413,7 @@ td.screen{color:var(--ink-soft);white-space:nowrap}
         <h4>How I worked</h4>
         <p class="col soft">What I built on, what I added, and what broke along the way.</p>
         <ul class="steps">
-          <li><div><b>Following the textbook</b><p>The course directed us to build the store step by step from <a href="https://learning.oreilly.com/library/view/django-5-for/9781835461556/" target="_blank" rel="noopener"><cite>Django 5 for the Impatient</cite></a> by Daniel Correa and Greg Lim. The book gave the project its structure: four Django apps, so each part of the store &mdash; catalog, cart, accounts, home &mdash; could change without disturbing the others.</p></div></li>
+          <li><div><b>Following the textbook</b><p>The course directed us to build the store step by step from an assigned Django textbook. The book gave the project its structure: four Django apps, so each part of the store &mdash; catalog, cart, accounts, home &mdash; could change without disturbing the others.</p></div></li>
           <li><div><b>Adding review moderation</b><p>I added a way for users to report reviews. A reported review is hidden from the movie page rather than deleted, so an admin can still see it and decide what to do. That took a new <code>is_hidden</code> field, a report view, a template rule that shows Report only on other people&rsquo;s reviews, and an admin column for managing hidden reviews.</p></div></li>
           <li><div><b>Moving to production</b><p>The store was first built on MySQL. To deploy it, I migrated to SQLite by exporting everything with <code>dumpdata</code> and loading it back with <code>loaddata</code>, so no data was lost. It now runs on PythonAnywhere in a virtualenv, serving movie images from <code>media/</code>.</p></div></li>
           <li><div><b>Tracking down a checkout bug</b><p>The Purchase button was showing up once per movie, outside the cart table. The link had been placed inside the table&rsquo;s loop, which isn&rsquo;t valid table markup, so browsers pushed it out and repeated it. Moving it below the cart total fixed it.</p></div></li>
