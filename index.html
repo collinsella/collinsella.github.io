@@ -255,7 +255,10 @@ td.screen{color:var(--ink-soft);white-space:nowrap}
 .play{width:58px;height:58px;border-radius:50%;border:1px solid #E5B94E;display:grid;place-items:center}
 .play svg{width:19px;height:19px;fill:#E5B94E;margin-left:3px}
 .video p{margin:0;font-size:14.5px;color:var(--marquee-soft);max-width:38ch}
-.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+a.video{text-decoration:none}
+a.video:hover .play{background:rgba(229,185,78,.16)}
+.video .video-title{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.25rem;color:var(--marquee-ink)}
+.play{transition:background .15s}
 
 .foot{border-top:1px solid var(--line);padding:28px 0 44px;font-size:13.5px;color:var(--ink-faint)}
 .foot p{margin:0}
@@ -429,10 +432,11 @@ td.screen{color:var(--ink-soft);white-space:nowrap}
         <p class="eyebrow">Video demonstration</p>
         <h4>See it running</h4>
         <p class="col soft">A walkthrough of the application and its features.</p>
-        <div class="video">
+        <a class="video" href="https://gtvault-my.sharepoint.com/:v:/g/personal/ecollins60_gatech_edu/IQCFTVZ_7uDpTbKYxX1Z2iTdAQKVH1jGr42qyBG0ojYwV3Q?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&amp;e=k8mvkD" target="_blank" rel="noopener">
           <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l15-8.5z"/></svg></span>
-          <p>Demo video coming soon.</p>
-        </div>
+          <p class="video-title">Watch the demo</p>
+          <p>Opens in OneDrive, no sign-in needed.</p>
+        </a>
       </div>
     </div>
 
