@@ -218,7 +218,8 @@ p{margin:0 0 18px}
 .note b{color:var(--pending)}
 
 .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
-table{border-collapse:collapse;width:100%;min-width:780px;font-size:14.5px}
+table{border-collapse:collapse;width:100%;min-width:820px;font-size:14.5px}
+td.story{min-width:260px}
 thead th{
   font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.12em;
   text-transform:uppercase;color:var(--ink-faint);font-weight:500;text-align:left;
@@ -226,10 +227,9 @@ thead th{
 }
 tbody td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
 tbody tr:last-child td{border-bottom:0}
-td.area{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+td.id{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
 td code{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.86em;background:var(--surface-2);padding:1px 5px;border-radius:2px;white-space:nowrap}
-tr.group-start td{border-top:1px solid var(--line)}
-.mine{display:inline-block;margin-left:6px;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-bright);border-radius:2px;padding:0 5px;vertical-align:1px;white-space:nowrap}
+.mine{display:inline-block;margin:6px 0 0;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-bright);border-radius:2px;padding:0 5px;vertical-align:1px;white-space:nowrap}
 td.screen{color:var(--ink-soft);white-space:nowrap}
 
 .steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px;max-width:var(--measure)}
@@ -377,26 +377,34 @@ td.screen{color:var(--ink-soft);white-space:nowrap}
       <div class="sub">
         <p class="eyebrow">Requirements</p>
         <h4>Screens &amp; user stories</h4>
-        <p class="col soft">How each screen responds to what a user needs to do.</p>
+        <p class="col soft">How each screen and feature responds to the 21 required user stories.</p>
         <div class="table-scroll">
           <table>
             <thead>
-              <tr><th>Area</th><th>User story</th><th>Screen</th><th>How it&rsquo;s implemented</th></tr>
+              <tr><th>#</th><th>User story</th><th>Screen</th><th>How it&rsquo;s implemented</th></tr>
             </thead>
             <tbody>
-              <tr><td class="area">Accounts</td><td>As a visitor, I can create an account.</td><td class="screen">Sign up</td><td>A customized <code>UserCreationForm</code> with Bootstrap styling; validation errors show as Bootstrap alerts through a custom <code>ErrorList</code>.</td></tr>
-              <tr><td class="area">Accounts</td><td>As a user, I can log in and log out.</td><td class="screen">Log in, navbar</td><td>Django authentication. The navbar swaps Log in and Sign up for Orders and Log out once you&rsquo;re signed in.</td></tr>
-              <tr class="group-start"><td class="area">Movies</td><td>As a user, I can browse every movie.</td><td class="screen">Movies</td><td>A list of each movie&rsquo;s name, price, description, and poster image.</td></tr>
-              <tr><td class="area">Movies</td><td>As a user, I can search movies by name.</td><td class="screen">Movies</td><td>A case-insensitive name filter passed as the <code>?search=</code> query parameter.</td></tr>
-              <tr><td class="area">Movies</td><td>As a user, I can see a movie&rsquo;s details and reviews.</td><td class="screen">Movie detail</td><td>The detail page lists the movie&rsquo;s reviews, leaving out any that have been reported.</td></tr>
-              <tr class="group-start"><td class="area">Reviews</td><td>As a signed-in user, I can write a review.</td><td class="screen">Movie detail</td><td>A login-required view saves the review against the movie and the current user.</td></tr>
-              <tr><td class="area">Reviews</td><td>As a signed-in user, I can edit or delete my own reviews.</td><td class="screen">Movie detail, Edit review</td><td>The buttons appear only on your own reviews, and the views re-check ownership before saving or deleting.</td></tr>
-              <tr><td class="area">Reviews</td><td>As a signed-in user, I can report someone else&rsquo;s review.<span class="mine">My addition</span></td><td class="screen">Movie detail</td><td>Report appears only on other people&rsquo;s reviews. Reporting sets <code>is_hidden</code>, which removes the review from the movie page.</td></tr>
-              <tr class="group-start"><td class="area">Cart</td><td>As a user, I can add a movie to my cart.</td><td class="screen">Movie detail</td><td>Choose a quantity from 1 to 10; the cart is saved in the session rather than the database.</td></tr>
-              <tr><td class="area">Cart</td><td>As a user, I can review my cart and clear it.</td><td class="screen">Cart</td><td>Line items and a running total, calculated by a helper in <code>utils.py</code> and a custom <code>get_quantity</code> template filter.</td></tr>
-              <tr><td class="area">Cart</td><td>As a signed-in user, I can buy what&rsquo;s in my cart.</td><td class="screen">Cart, Purchase</td><td>Creates an <code>Order</code> plus one <code>Item</code> per movie, clears the cart, and shows a confirmation with the order number.</td></tr>
-              <tr class="group-start"><td class="area">Orders</td><td>As a signed-in user, I can see my past orders.</td><td class="screen">Orders</td><td>Lists every order placed by the current user.</td></tr>
-              <tr class="group-start"><td class="area">Admin</td><td>As an admin, I can manage movies and moderate reviews.</td><td class="screen">Django admin</td><td>Movies are sorted by name and searchable; a <code>ReviewAdmin</code> shows the <code>is_hidden</code> flag so reported reviews can be managed.</td></tr>
+              <tr><td class="id">1</td><td class="story">As a user, I want to see information about the GT Movies Store so I can learn more about the app and its purpose.</td><td class="screen">About</td><td>A dedicated About page served by the <code>home</code> app.</td></tr>
+              <tr><td class="id">2</td><td class="story">As a user, I want to register an account so that I can access the GT Movies Store.</td><td class="screen">Sign up</td><td>A customized <code>UserCreationForm</code> with Bootstrap styling; validation errors show as Bootstrap alerts through a custom <code>ErrorList</code>.</td></tr>
+              <tr><td class="id">3</td><td class="story">As a registered user, I want to log in so that I can access my account data.</td><td class="screen">Log in</td><td>Django authentication. Once you&rsquo;re signed in, the navbar swaps Log in and Sign up for Orders and Log out.</td></tr>
+              <tr><td class="id">4</td><td class="story">As a user, I want to be able to view the list of movies available in the GT Movies Store so I can make my selections.</td><td class="screen">Movies</td><td>Lists every movie in the catalog from the <code>Movie</code> model.</td></tr>
+              <tr><td class="id">5</td><td class="story">As a user, I want to search movies per title so I can make my selections.</td><td class="screen">Movies</td><td>A case-insensitive title filter passed as the <code>?search=</code> query parameter.</td></tr>
+              <tr><td class="id">6</td><td class="story">As a user, I want to be able to access a shopping cart so I can list all movie items I am willing to purchase.</td><td class="screen">Cart</td><td>Line items with quantities and a running total, calculated by a helper in <code>utils.py</code> and a custom <code>get_quantity</code> template filter.</td></tr>
+              <tr><td class="id">7</td><td class="story">As a user, I want to be able to add one or more items of a movie to my shopping cart so I can purchase them in the future.</td><td class="screen">Movie detail</td><td>A quantity picker from 1 to 10. The cart is stored in the session as <code>{movie_id: quantity}</code>, so it needs no database table.</td></tr>
+              <tr><td class="id">8</td><td class="story">As a user, I want to create movie reviews so others can use my insights when searching for movies.</td><td class="screen">Movie detail</td><td>A login-required view saves the review against the movie and the current user.</td></tr>
+              <tr><td class="id">9</td><td class="story">As a user, I want to be able to remove all movie items from my shopping cart so I can have flexibility on what I purchase or not.</td><td class="screen">Cart</td><td>&ldquo;Remove all movies from Cart&rdquo; empties the session cart in one click.</td></tr>
+              <tr><td class="id">10</td><td class="story">As a user, I want to edit my reviews so I have the freedom to change my mind about my reviews.</td><td class="screen">Movie detail, Edit review</td><td>Edit appears only on your own reviews, and the view re-checks ownership before saving.</td></tr>
+              <tr><td class="id">11</td><td class="story">As a user, I want to delete my movie reviews so I have the freedom to change my mind about my reviews.</td><td class="screen">Movie detail</td><td>Delete appears only on your own reviews, and the view only removes a review that belongs to the signed-in user.</td></tr>
+              <tr><td class="id">12</td><td class="story">As a user, I want to see the reviews of a movie so I can have information on whether I should purchase a movie or not.</td><td class="screen">Movie detail</td><td>Each movie&rsquo;s page lists its reviews, leaving out any that have been reported.</td></tr>
+              <tr><td class="id">13</td><td class="story">As a user, I want to see the details of a movie so I have the information to make my choices.</td><td class="screen">Movie detail</td><td>Every movie has its own page at <code>/movies/&lt;id&gt;/</code> with its details and reviews.</td></tr>
+              <tr><td class="id">14</td><td class="story">As a user, I want to see a list of my orders so I can track what I have purchased and my expenses.</td><td class="screen">Orders</td><td>A login-required page listing every order the current user has placed.</td></tr>
+              <tr><td class="id">15</td><td class="story">As a user, I want to be able to access the GT Movies Store from any desktop using a web browser, so I can use the app anywhere with an internet connection.</td><td class="screen">Every page</td><td>Deployed to PythonAnywhere at <a href="https://ellacollins.pythonanywhere.com" target="_blank" rel="noopener">ellacollins.pythonanywhere.com</a>, so it runs in any browser with nothing to install.</td></tr>
+              <tr><td class="id">16</td><td class="story">As a user, I want the GT Movies Store to feature a responsive Graphical User Interface (GUI) so I can access it through different devices with diverse screen sizes.</td><td class="screen">Every page</td><td>Bootstrap 5.3 grid columns at the <code>md</code>, <code>lg</code>, and <code>xl</code> breakpoints, a navbar that collapses into a menu on small screens, and fluid images.</td></tr>
+              <tr><td class="id">17</td><td class="story">As an administrator, I want to be able to manage (view, create, update, or delete) users from the GT Movies Store so we can keep information up to date.</td><td class="screen">Django admin</td><td>Django&rsquo;s built-in authentication admin, with full view, create, update, and delete for user accounts.</td></tr>
+              <tr><td class="id">18</td><td class="story">As an administrator, I want to be able to manage (view, create, update, or delete) movies from the GT Movies Store so we can keep information up to date.</td><td class="screen">Django admin</td><td>A custom <code>MovieAdmin</code>, sorted by name and searchable by name.</td></tr>
+              <tr><td class="id">19</td><td class="story">As an administrator, I want to be able to manage (create, update, or delete) reviews from the GT Movies Store so we can keep information up to date.</td><td class="screen">Django admin</td><td>A custom <code>ReviewAdmin</code> listing each review&rsquo;s movie, user, and <code>is_hidden</code> flag, so reported reviews can be restored or removed.</td></tr>
+              <tr><td class="id">20</td><td class="story">As an administrator, I want to be able to manage (create, update, or delete) orders from the GT Movies Store so we can keep information up to date.</td><td class="screen">Django admin</td><td>The <code>Order</code> and <code>Item</code> models are registered in the admin, so orders and their line items can be edited directly.</td></tr>
+              <tr><td class="id">21</td><td class="story">As a user, I want to report inappropriate reviews so that the comment section isn&rsquo;t cluttered with irrelevant/offensive reviews and the review is removed from the page moving forward.</td><td class="screen">Movie detail</td><td>Report appears only on other people&rsquo;s reviews. Reporting sets <code>is_hidden</code>, which removes the review from the movie page while keeping it available to admins.<span class="mine">Built by me</span></td></tr>
             </tbody>
           </table>
         </div>
