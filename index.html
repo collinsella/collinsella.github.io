@@ -411,12 +411,12 @@ td.screen{color:var(--ink-soft);white-space:nowrap}
       <div class="sub">
         <p class="eyebrow">Process</p>
         <h4>How I worked</h4>
-        <p class="col soft">What I built on, what I added, and what broke along the way.</p>
+        <p class="col soft">What I built on, what I added, and how I refined it.</p>
         <ul class="steps">
           <li><div><b>Following the textbook</b><p>The course directed us to build the store step by step from an assigned Django textbook. The book gave the project its structure: four Django apps, so each part of the store &mdash; catalog, cart, accounts, home &mdash; could change without disturbing the others.</p></div></li>
           <li><div><b>Adding review moderation</b><p>I added a way for users to report reviews. A reported review is hidden from the movie page rather than deleted, so an admin can still see it and decide what to do. That took a new <code>is_hidden</code> field, a report view, a template rule that shows Report only on other people&rsquo;s reviews, and an admin column for managing hidden reviews.</p></div></li>
-          <li><div><b>Moving to production</b><p>The store was first built on MySQL. To deploy it, I migrated to SQLite by exporting everything with <code>dumpdata</code> and loading it back with <code>loaddata</code>, so no data was lost. It now runs on PythonAnywhere in a virtualenv, serving movie images from <code>media/</code>.</p></div></li>
-          <li><div><b>Tracking down a checkout bug</b><p>The Purchase button was showing up once per movie, outside the cart table. The link had been placed inside the table&rsquo;s loop, which isn&rsquo;t valid table markup, so browsers pushed it out and repeated it. Moving it below the cart total fixed it.</p></div></li>
+          <li><div><b>Fixing formatting issues</b><p>Once the features worked, I experimented with the templates&rsquo; HTML and CSS to fix formatting issues, adjusting the layout until each page displayed cleanly.</p></div></li>
+          <li><div><b>Designing for different devices</b><p>People reach the store from phones, tablets, and laptops, so I adapted the HTML and CSS to give each of them a good experience &mdash; using Bootstrap&rsquo;s grid to rearrange content across screen sizes, and a navbar that collapses into a menu on smaller screens.</p></div></li>
           <li><div><b>Getting unstuck</b><p><span class="pending">pending</span> &mdash; how I worked through questions and problems along the way.</p></div></li>
         </ul>
       </div>
